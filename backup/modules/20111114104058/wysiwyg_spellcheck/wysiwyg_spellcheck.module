@@ -1,0 +1,48 @@
+<?php
+
+// $Id: wysiwyg_spellcheck.module,v 1.3 2009/06/11 06:00:47 iva2k Exp $
+
+/**
+ * @file
+ * wysiwyg_spellcheck is an plugin for wysiwyg editors
+ */
+
+/**
+ * Implementation of hook_help().
+ */
+function wysiwyg_spellcheck_help($path, $arg) {
+  if ($path == 'admin/modules#description') {
+    return t('Enables TinyMCE spellchecker plugin in Wysiwyg editor.');
+  }
+}
+
+/**
+* Implementation of hook_wysiwyg_plugin().
+*/
+function wysiwyg_spellcheck_wysiwyg_plugin($editor) {
+  switch ($editor) {
+    case 'tinymce':
+//if ($version > 3) {
+      $path = drupal_get_path('module', 'wysiwyg_spellcheck');
+      return array(
+// SEE http://drupal.org/files/issues/wysiwyg_api_documentation.patch
+        'spellchecker' => array(
+//          'path' => $editor['library path'] .'/plugins/spellchecker',
+          'path' => $path . '/tinymce/spellchecker/editor_plugin.js',
+          'buttons' => array('spellchecker' => t('Spell Check')),
+          'url' => 'http://wiki.moxiecode.com/index.php/TinyMCE:Plugins/spellchecker',
+          'load' => TRUE,
+        ),
+      );
+//}	// if ($version)
+  }
+}
+
+/**
+ * Implementation of hook_init().
+ */
+function wysiwyg_spellcheck_init() {
+  $path = drupal_get_path('module', 'wysiwyg_spellcheck');
+//  drupal_add_js($path . '/tinymce/spellchecker/any.js');
+//  drupal_add_js('var anyvar = "/' . $path . '/mimetex/mimetex.cgi";', 'inline');
+}

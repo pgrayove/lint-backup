@@ -1,0 +1,17 @@
+; $Id: webserver_auth.info,v 1.2.1 2011/02/15 11:43:00 Exp $
+name = Webserver authentication
+description = Rely on the web server authentication instead of Drupal.
+core = 7.x
+; Information added by drupal.org packaging script on 2010-11-12
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "webserver_auth"
+datestamp = "1289565031"
+
+
+; Information added by drupal.org packaging script on 2012-09-04
+version = "7.x-1.0-beta1"
+core = "7.x"
+project = "webserver_auth"
+datestamp = "1346753851"
+

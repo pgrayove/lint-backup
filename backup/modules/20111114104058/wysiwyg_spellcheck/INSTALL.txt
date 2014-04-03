@@ -1,0 +1,28 @@
+# $Id: INSTALL.txt,v 1.3 2009/05/28 05:31:16 iva2k Exp $
+
+To enable this module, follow these instructions:
+
+1. Upload it to your sites/all/modules folder and enable it on the admin/build/modules page.
+
+2. Install TinyMCE spellchecker plugin
+
+In order to use Spell Checker, you will need to download TinyMCE spellchecker plugin.
+
+The plugin is available from http://tinymce.moxiecode.com/download.php
+
+Download, extract and copy it into wysiwyg_spellcheck/tinymce/.
+
+After installation it should be found in wysiwyg_spellcheck/tinymce/spellchecker/
+
+3. Edit wysiwyg_spellcheck/tinymce/spellchecker/config.php
+
+Uncomment one of the lines that select which spellchecker to use:
+
+*It comes with defaults using Google spellchecker.
+
+*Other options: TBD
+
+4. Configure one of your WYSIWYG profiles to show TinyMCE spellcheck button
+
+5. Verify that TinyMCE shows the new button when you edit a page using your WYSISWYG profile, and this button works.
+

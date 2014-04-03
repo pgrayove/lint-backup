@@ -1,0 +1,124 @@
+<?php
+// profileplus.module,v 1.8.2.2 2008/04/28 04:05:58 incrn8 Exp
+
+/**
+ * @file
+ * Allows full searching of all user profile fields for Drupal 6
+ *
+ * @author Mike Carter <mike@ixis.co.uk>
+ * @author Dave Myburgh <dave@mybesinformatik.com>
+ */
+
+
+/**
+ * Implementation of hook_help().
+ */
+function profileplus_help($path, $arg) {
+  switch ($path) {
+    case 'admin/modules#description':
+      return t('Makes user profiles searchable');
+   }
+}
+
+
+/**
+ * Implementation of hook_perm().
+ */
+function profileplus_perm() {
+  return array('search user profiles');
+}
+
+
+/*
+ * Implementation of hook_search().
+ */
+function profile_search($op = 'search', $keys = null) {
+  switch ($op) {
+    case 'name':
+      if (user_access('access user profiles')) {
+        return t('User Profiles');
+      }
+    case 'search':
+      if (user_access('access user profiles')) {
+        $find = array();
+        $keywords = explode(' ', check_plain(strip_tags($keys)));
+        $i = count($keywords);
+        $keys = preg_replace('!\*+!', '%', $keys);
+
+        if ($i > 0) {
+          $users = array();
+          $match = array();
+          while ($i > 0) {
+            $j = $i - 1;
+            if (user_access('administer users')) {
+            // administrators don't have restrictions
+              $sql = "FROM {users} u INNER JOIN {profile_values} pv ON u.uid = pv.uid INNER JOIN {profile_fields} pf ON pv.fid = pf.fid WHERE pv.value LIKE '%%%s%%' OR u.name LIKE '%%%s%%'";
+              $result = db_query('SELECT DISTINCT u.* '. $sql, $keywords[$j], $keywords[$j]);
+            }
+            elseif (user_access('search user profiles')) {
+            // non-administrators can only search public fields and active users
+              $sql = "FROM {users} u INNER JOIN {profile_values} pv ON u.uid = pv.uid INNER JOIN {profile_fields} pf ON pv.fid = pf.fid WHERE pv.value LIKE '%%%s%%' OR u.name LIKE '%%%s%%' AND pf.visibility IN (%d, %d) AND u.status = 1";
+              $result = db_query('SELECT DISTINCT u.* '. $sql, $keywords[$j], $keywords[$j], PROFILE_PUBLIC, PROFILE_PUBLIC_LISTINGS);
+            }
+
+            while ($auser = db_fetch_object($result)) {
+              if (in_array($auser->uid, $users) && !in_array($auser->uid, $match)) {
+                $match[] = $auser->uid;
+              }
+              else {
+                $users[] = $auser->uid;
+              }
+            }
+            $i = $i - 1;
+          }
+
+          if ($match) {
+            $items = $match;
+          }
+          else {
+            $items = $users;
+          }
+
+          if ($items) {
+            $finalsql = pager_query('SELECT * FROM {users} WHERE uid IN ('. implode(', ', $items).')');
+              while ($pageditems = db_fetch_object($finalsql)) {
+                // load the user object
+                $user = user_load(array('uid'=>$pageditems->uid));
+
+                // create the profile fields array
+                // Show private fields to administrators and people viewing their own account.
+                if (user_access('administer users') || $GLOBALS['user']->uid == $user->uid) {
+                  $result = db_query('SELECT * FROM {profile_fields} WHERE visibility != %d ORDER BY category, weight', PROFILE_HIDDEN);
+                }
+                else {
+                  $result = db_query('SELECT * FROM {profile_fields} WHERE visibility != %d AND visibility != %d ORDER BY category, weight', PROFILE_PRIVATE, PROFILE_HIDDEN);
+                }
+
+                $profile_fields = array();
+                while ($field = db_fetch_object($result)) {
+                  if ($value = profile_view_field($user, $field)) {
+                    $title = ($field->type != 'checkbox') ? check_plain($field->title) : NULL;
+                    $item = array(
+                      'title' => $title,
+                      'value' => $value,
+                      'class' => $field->name,
+                    );
+                    $profile_fields[$field->category][$field->name] = $item;
+                  }
+                }
+
+                $entry = array();
+                foreach ($profile_fields as $category => $fields) {
+                  foreach ($fields as $field) {
+                    $entry[] = $field['value'];
+                  }
+                  $view = implode(' | ', $entry);
+                }
+                $find[] = array('title' => $user->name, 'link' => url("user/$user->uid"), 'snippet' => search_excerpt($keys, $view));
+              }
+          }
+          return $find;
+        }
+      } // end search case
+  }
+}

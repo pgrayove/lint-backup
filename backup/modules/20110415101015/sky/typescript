@@ -1,0 +1,568 @@
+Script started on Thu 18 Mar 2010 12:52:55 PM EDT
+]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky[root@frost sky]# 
+]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky[root@frost sky]# emac[K[K[K[Kemacs scruy[K[Kipts/
+7[?47h[?1h=[41;1H[7m----:---F1  [m[m[7m[1m*scratch*   [m[m[7m      (Fundamental)--L1--All------------------------------------------------------------[m[m
+[A[H[42;1HLoading disp-table...[K[H[42;22Hdone[H[H[2J[42;1HLoading /usr/share/emacs/site-lisp/site-start.d/igrep-init.el (source)...[K[H
+[42;74Hdone[H
+[42;49Hlang-coding-systems-init.el (source)...[H
+[H[2J[42;1HLoading encoded-kb...[K[H
+[42;22Hdone[H
+[42;1H[K[?1l>[2J[?47l8[m7[?47h[?1h=[42;1HLoading /usr/share/emacs/site-lisp/site-start.d/lang-coding-systems-init.el (source)...done[K[H
+[42;49Hphp-mode-init.el (source)...[K[H
+[42;77Hdone[H
+[42;50Ho-mode-init.el (source)...[K[H
+[42;76Hdone[H
+[42;50Hsgml-init.el (source)...[K[H
+[42;74Hdone[H
+[42;50Hython-mode-init.el (source)...[H
+[42;80Hdone[H
+[42;49Hrpm-spec-mode-init.el (source)...[K[H
+[42;82Hdone[H
+[42;49Htramp-init.el (source)...[K[H
+[42;74Hdone[H
+[42;9Hjka-compr...[K[H
+[42;21Hdone[H
+[42;1HFor information about the GNU Project and its goals, type C-h C-p.[H
+[42;1HLoading dired...[K[H
+[42;17Hdone[H
+[42;1HReading directory /lint/drupal/sites/all/themes/sky/scripts/...[H
+[42;64Hdone[H
+[42;1HReading directory /lint/drupal/sites/all/themes/sky/scripts/...done[K[H[7mFile Edit Options Buffers Tools Operate Mark Regexp Immediate Subdir Help                                       [m[m
+[A
+  /lint/drupal/sites/all/themes/sky/scripts:[K
+  used 48 available 84998624[K
+  drwxr-sr-x 2 1080 1080 4096 Jan 24 21:15 .[K
+  drwxr-sr-x 8 1080 1080 4096 Mar 18 12:52 ..[K
+  -rw-r--r-- 1 1080 1080 3174 Jun 12  2009 hoverIntent.js[K
+  -rwxr-xr-x 1 1080 1080 3172 Jun 12  2009 iepngfix.htc[K
+  -rw-r--r-- 1 1080 1080  675 Jun 12  2009 sky.js[K
+  -rw-r--r-- 1 1080 1080 3665 Jun 12  2009 superfish.js[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[7m-uuu:%%-F1  [m[m[7m[1mscripts          [m[m[7m      (Dired by name)--L5--All-----------------------------------------------------[m[m
+[A[6;44H[42;1H[K[6;44H[42;1H(No files need saving)[6;44H[42;1H[K[?1l>[2J[?47l8[m]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky[root@frost sky]# cd scrupt[K[K[K
+screenshot-drupal.org.png  screenshot.png             scripts/                   
+[root@frost sky]# cd scrp[K[K[K[K[K[Kd scripts
+]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky/scripts[root@frost scripts]# ls
+[00m[00mhoverIntent.js[00m  [01;32miepngfix.htc[00m  [00msky.js[00m  [00msuperfish.js[00m
+[m]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky/scripts[root@frost scripts]# emacs superfish.js 
+7[?47h[?1h=[41;1H[7m----:---F1  [m[m[7m[1m*scratch*   [m[m[7m      (Fundamental)--L1--All------------------------------------------------------------[m[m
+[A[H[42;1HLoading disp-table...[K[H[42;22Hdone[H[H[2J[42;1HLoading /usr/share/emacs/site-lisp/site-start.d/igrep-init.el (source)...[K[H
+[42;74Hdone[H
+[42;49Hlang-coding-systems-init.el (source)...[H
+[H[2J[42;1HLoading encoded-kb...[K[H
+[42;22Hdone[H
+[42;1H[K[?1l>[2J[?47l8[m7[?47h[?1h=[42;1HLoading /usr/share/emacs/site-lisp/site-start.d/lang-coding-systems-init.el (source)...done[K[H
+[42;49Hphp-mode-init.el (source)...[K[H
+[42;77Hdone[H
+[42;50Ho-mode-init.el (source)...[K[H
+[42;76Hdone[H
+[42;50Hsgml-init.el (source)...[K[H
+[42;74Hdone[H
+[42;50Hython-mode-init.el (source)...[H
+[42;80Hdone[H
+[42;49Hrpm-spec-mode-init.el (source)...[K[H
+[42;82Hdone[H
+[42;49Htramp-init.el (source)...[K[H
+[42;74Hdone[H
+[42;9Hjka-compr...[K[H
+[42;21Hdone[H
+[42;1HFor information about the GNU Project and its goals, type C-h C-p.[H
+[42;1HFor information about the GNU Project and its goals, type C-h C-p.[K[H[7mFile Edit Options Buffers Tools Help                                                                            [m[m
+[A
+[K
+/*[K
+ * Superfish v1.4.8 - jQuery menu widget[K
+ * Copyright (c) 2008 Joel Birch[K
+ *[K
+ * Dual licensed under the MIT and GPL licenses:[K
+ *      http://www.opensource.org/licenses/mit-license.php[K
+ *      http://www.gnu.org/licenses/gpl.html[K
+ *[K
+ * CHANGELOG: http://users.tpg.com.au/j_birch/plugins/superfish/changelog.txt[K
+ */[K
+[K
+;(function($){[K
+        $.fn.superfish = function(op){[K
+[K
+                var sf = $.fn.superfish,[K
+                        c = sf.c,[K
+                        $arrow = $([''].join('')),[K
+                        over = function(){[K
+                                var $$ = $(this), menu = getMenu($$);[K
+                                clearTimeout(menu.sfTimer);[K
+                                $$.showSuperfishUl().siblings().hideSuperfishUl();[K
+                        },[K
+                        out = function(){[K
+                                var $$ = $(this), menu = getMenu($$), o = sf.op;[K
+                                clearTimeout(menu.sfTimer);[K
+                                menu.sfTimer=setTimeout(function(){[K
+                                        o.retainPath=($.inArray($$[0],o.$path)>-1);[K
+                                        $$.hideSuperfishUl();[K
+                                        if (o.$path.length && $$.parents(['li.',o.hoverClass].join('')).length<\
+[A
+1){over.call(o.$path);}[K
+                                },o.delay);[K
+                        },[K
+                        getMenu = function($menu){[K
+                                var menu = $menu.parents(['ul.',c.menuClass,':first'].join(''))[0];[K
+                                sf.op = sf.o[menu.serial];[K
+                                return menu;[K
+                        },[K
+                        addArrow = function($a){ $a.addClass(c.anchorClass).append($arrow.clone()); };[K
+[7m-uu-:---F1  [m[m[7m[1msuperfish.js[m[m[7m      (Fundamental)--L1--Top------------------------------------------------------------[m[m
+[A[H
+[42;1H[K[41;47H[7m2[m[m[H
+
+[41;47H[7m3[m[m[4;1H[41;47H[7m4[m[m[5;1H[41;47H[7m5[m[m[6;1H[41;47H[7m6[m[m[7;1H[41;47H[7m7[m[m[8;1H[41;47H[7m8[m[m[9;1H[41;47H[7m9[m[m[10;1H[41;47H[7m10--Top[m[m[11;1H[41;48H[7m1[m[m[12;1H[41;48H[7m2[m[m[13;1H[41;48H[7m3[m[m[14;1H[41;48H[7m4[m[m[15;1H[41;48H[7m5[m[m[16;1H[41;48H[7m6[m[m[17;1H[41;48H[7m7[m[m[18;1H[41;48H[7m8[m[m[19;1H[41;48H[7m9[m[m[20;1H[41;47H[7m20[m[m[21;1H[41;48H[7m1[m[m[22;1H[41;48H[7m2[m[m[23;1H[41;48H[7m3[m[m[24;1H[41;48H[7m4[m[m[25;1H[41;48H[7m5[m[m[26;1H[41;48H[7m6[m[m[27;1H[41;48H[7m7[m[m[28;1H[41;48H[7m8[m[m[29;1H[41;48H[7m9[m[m[30;1H[41;47H[7m30[m[m[31;1H[41;48H[7m1[m[m[33;1H[41;48H[7m2[m[m[34;1H[41;48H[7m3[m[m[35;1H[41;48H[7m4[m[m[36;1H[41;48H[7m5[m[m[37;1H[41;48H[7m6[m[m[38;1H[41;48H[7m7[m[m[39;1H[41;48H[7m8[m[m[A[1;40r[2;1H[19M[1;42r[22;1H[K
+                return this.each(function() {[K
+                        var s = this.serial = sf.o.length;[K
+                        var o = $.extend({},sf.defaults,op);[K
+                        o.$path = $('li.'+o.pathClass,this).slice(0,o.pathLevels).each(function(){[K
+                                $(this).addClass([o.hoverClass,c.bcClass].join(' '))[K
+                                        .filter('li:has(ul)').removeClass(o.pathClass);[K
+                        });[K
+                        sf.o[s] = sf.op = o;[K
+[K
+                        $('li:has(ul)',this)[($.fn.hoverIntent && !o.disableHI) ? 'hoverIntent' : 'hover'](over\
+[A
+,out).each(function() {[K
+                                if (o.autoArrows) addArrow( $('>a:first-child',this) );[K
+                        })[K
+                        .not('.'+c.bcClass)[K
+                                .hideSuperfishUl();[K
+[K
+                        var $a = $('a',this);[K
+                        $a.each(function(i){[K
+	[7m9--13%[m[m[22;1H[41;47H[7m40[m[m[23;1H[41;48H[7m1[m[m[24;1H[41;48H[7m2[m[m[25;1H[41;48H[7m3[m[m[26;1H[41;48H[7m4[m[m[27;1H[41;48H[7m5[m[m[28;1H[41;48H[7m6[m[m[29;1H[41;48H[7m7[m[m[30;1H[41;48H[7m8[m[m[31;1H[41;48H[7m9[m[m[32;1H[41;47H[7m50[m[m[34;1H[41;48H[7m1[m[m[35;1H[41;48H[7m2[m[m[36;1H[41;48H[7m3[m[m[37;1H[41;48H[7m4[m[m[38;1H[41;48H[7m5[m[m[39;1H[41;48H[7m6[m[m[A[1;40r[2;1H[19M[1;42r[22;1H                                var $li = $a.eq(i).parents('li');[K
+                                $a.eq(i).focus(function(){over.call($li);}).blur(function(){out.call($li);});[K
+                        });[K
+                        o.onInit.call(this);[K
+[K
+                }).each(function() {[K
+                        menuClasses = [c.menuClass];[K
+                        if (sf.op.dropShadows  && !($.browser.msie && $.browser.version < 7)) menuClasses.push(\
+[A
+c.shadowClass);[K
+                        $(this).addClass(menuClasses.join(' '));[K
+                });[K
+        };[K
+[K
+        var sf = $.fn.superfish;[K
+        sf.o = [];[K
+        sf.op = {};[K
+        sf.IE7fix = function(){[K
+                var o = sf.op;[K
+                if ($.browser.msie && $.browser.version > 6 && o.dropShadows && o.animation.opacity!=undefined)[K[41;48H[7m7--30[m[m[22;1H[41;48H[7m8[m[m[23;1H[41;48H[7m9[m[m[24;1H[41;47H[7m60[m[m[25;1H[41;48H[7m1[m[m[26;1H[41;48H[7m2[m[m[27;1H[41;48H[7m3[m[m[28;1H[41;48H[7m4[m[m[29;1H[41;48H[7m5[m[m[31;1H[41;48H[7m6[m[m[32;1H[41;48H[7m7[m[m[33;1H[41;48H[7m8[m[m[34;1H[41;48H[7m9[m[m[35;1H[41;47H[7m70[m[m[36;1H[41;48H[7m1[m[m[37;1H[41;48H[7m2[m[m[38;1H[41;48H[7m3[m[m[39;1H[41;48H[7m4[m[m[A[1;40r[2;1H[19M[1;42r[22;1H                        this.toggleClass(sf.c.shadowClass+'-off');[K
+                };[K
+        sf.c = {[K
+                bcClass     : 'sf-breadcrumb',[K
+                menuClass   : 'sf-js-enabled',[K
+                anchorClass : 'sf-with-ul',[K
+                arrowClass  : 'sf-sub-indicator',[K
+                shadowClass : 'sf-shadow'[K
+        };[K
+        sf.defaults = {[K
+                hoverClass      : 'sfHover',[K
+                pathClass       : 'overideThisToUse',[K
+                pathLevels      : 1,[K
+                delay           : 800,[K
+                animation       : {opacity:'show'},[K
+                speed           : 'normal',[K
+                autoArrows      : true,[K
+                dropShadows : true,[K
+                disableHI       : false,                // true disables hoverIntent detection[K[41;48H[7m5--49[m[m[22;1H[41;48H[7m6[m[m[23;1H[41;48H[7m7[m[m[24;1H[41;48H[7m8[m[m[25;1H[41;48H[7m9[m[m[26;1H[41;47H[7m80[m[m[27;1H[41;48H[7m1[m[m[28;1H[41;48H[7m2[m[m[29;1H[41;48H[7m3[m[m[30;1H[41;48H[7m4[m[m[31;1H[41;48H[7m5[m[m[32;1H[41;48H[7m6[m[m[33;1H[41;48H[7m7[m[m[34;1H[41;48H[7m8[m[m[35;1H[41;48H[7m9[m[m[36;1H[41;47H[7m90[m[m[37;1H[41;48H[7m1[m[m[38;1H[41;48H[7m2[m[m[39;1H[41;48H[7m3[m[m[A[1;40r[2;1H[20M[1;42r[21;1H                onInit          : function(){}, // callback functions[K
+                onBeforeShow: function(){},[K
+                onShow          : function(){},[K
+                onHide          : function(){}[K
+        };[K
+        $.fn.extend({[K
+                hideSuperfishUl : function(){[K
+                        var o = sf.op,[K
+                                not = (o.retainPath===true) ? o.$path : '';[K
+                        o.retainPath = false;[K
+                        var $ul = $(['li.',o.hoverClass].join(''),this).add(this).not(not).removeClass(o.hoverC\
+[A
+lass)[K
+                                        .find('>ul').hide().css('visibility','hidden');[K
+                        o.onHide.call($ul);[K
+                        return this;[K
+                },[K
+                showSuperfishUl : function(){[K
+                        var o = sf.op,[K
+                                sh = sf.c.shadowClass+'-off',[K
+                                $ul = this.addClass(o.hoverClass)[K[41;48H[7m4--65[m[m[21;1H[41;48H[7m5[m[m[22;1H[41;48H[7m6[m[m[23;1H[41;48H[7m7[m[m[24;1H[41;48H[7m8[m[m[25;1H[41;48H[7m9[m[m[26;1H[41;47H[7m100--65%[m[m[27;1H[41;47H[7m99--65%-[m[m[26;1H[41;48H[7m8[m[m[25;1H[41;48H[7m7[m[m[24;1H[41;48H[7m6[m[m[23;1H[41;48H[7m5[m[m[22;1H[41;48H[7m4[m[m[21;1H[41;48H[7m3[m[m[20;1H[41;48H[7m2[m[m[19;1H[41;48H[7m1[m[m[18;1H[41;48H[7m0[m[m[17;1H[41;47H[7m89[m[m[16;1H		[C[C[C[C[C[C[41;48H[7m8[m[m[15;25H	[C[C[C[C[C,[K[41;6H[7m**[m[m[15;37H,[K,[K0,[42;1HSave file /lint/drupal/sites/all/themes/sky/scripts/superfish.js? (y, n, !, ., q, C-r or C-h)[CyWrote /lint/drupal/sites/all/themes/sky/scripts/superfish.js[K[15;36H[42;1H[K[15;36H[42;1H[K[?1l>[2J[?47l8[m]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky/scripts[root@frost scripts]# cd[K[Kls
+[00m[00mhoverIntent.js[00m  [01;32miepngfix.htc[00m  [00msky.js[00m  [00msuperfish.js[00m  [00msuperfish.js~[00m
+[m]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky/scripts[root@frost scripts]# cd ..
+]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky[root@frost sky]# ls
+[00m[01;34mcss[00m          [01;35mlogo.png[00m                   [01;34mscripts[00m        [01;34mtemplates[00m                   [00mwebform-mail-279.tpl.php[00m
+[00mfavicon.ico[00m  [01;34mpreprocess[00m                 [00msky.info[00m       [00mtheme-settings.php[00m          [00mwebform-mail-279.tpl.php~[00m
+[01;34mfunctions[00m    [00mREADME.txt[00m                 [00mstyle.css[00m      [00mtypescript[00m                  [00mwebform-mail-77.tpl.php~[00m
+[01;34mimages[00m       [01;35mscreenshot-drupal.org.png[00m  [00mtemplate.php[00m   [00mwebform-mail-1214.tpl.php[00m
+[00mLICENSE.txt[00m  [01;35mscreenshot.png[00m             [00mtemplate.php~[00m  [00mwebform-mail-1214.tpl.php~[00m
+[m]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky[root@frost sky]# cd [K[K[Kcd template
+bash: cd: template: No such file or directory
+]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky[root@frost sky]# cd templates
+]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky/templates[root@frost templates]# ls
+[00m[01;34moverrides[00m
+[m]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky/templates[root@frost templates]# cd overrides/
+]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky/templates/overrides[root@frost overrides]# ls
+[00m[00mblock.tpl.php[00m          [00mcomment-wrapper.tpl.php[00m  [00mnode.tpl.php~[00m         [00mviews-more.tpl.php[00m
+[00mcomment-forum.tpl.php[00m  [01;32mnode-forum.tpl.php[00m       [00mpage.tpl.php[00m          [00mviews-view.tpl.php[00m
+[00mcomment.tpl.php[00m        [00mnode.tpl.php[00m             [00muser-picture.tpl.php[00m
+[m]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky/templates/overrides[root@frost overrides]# emacs node.tpl.php
+7[?47h[?1h=[41;1H[7m----:---F1  [m[m[7m[1m*scratch*   [m[m[7m      (Fundamental)--L1--All------------------------------------------------------------[m[m
+[A[H[42;1HLoading disp-table...[K[H[42;22Hdone[H[H[2J[42;1HLoading /usr/share/emacs/site-lisp/site-start.d/igrep-init.el (source)...[K[H
+[42;74Hdone[H
+[42;49Hlang-coding-systems-init.el (source)...[H
+[H[2J[42;1HLoading encoded-kb...[K[H
+[42;22Hdone[H
+[42;1H[K[?1l>[2J[?47l8[m7[?47h[?1h=[42;1HLoading /usr/share/emacs/site-lisp/site-start.d/lang-coding-systems-init.el (source)...done[K[H
+[42;49Hphp-mode-init.el (source)...[K[H
+[42;77Hdone[H
+[42;50Ho-mode-init.el (source)...[K[H
+[42;76Hdone[H
+[42;50Hsgml-init.el (source)...[K[H
+[42;74Hdone[H
+[42;50Hython-mode-init.el (source)...[H
+[42;80Hdone[H
+[42;49Hrpm-spec-mode-init.el (source)...[K[H
+[42;82Hdone[H
+[42;49Htramp-init.el (source)...[K[H
+[42;74Hdone[H
+[42;9Hjka-compr...[K[H
+[42;21Hdone[H
+[42;1HFor information about the GNU Project and its goals, type C-h C-p.[H
+[42;1HLoading php-mode...[K[H
+[42;1HLoading regexp-opt...[K[H
+[42;22Hdone[H
+[42;9H/usr/libexec/emacs/21.4/i686-redhat-linux-gnu/fns-21.4.1-x.el (source)...[H
+[42;82Hdone[H
+[42;9Hadvice...[K[H
+[42;18Hdone[H
+[42;9Hcl-extra...[K[H
+[42;20Hdone[H
+[42;9Hbytecomp...[K[H
+[42;9Hcl-macs...[K[H
+[42;19Hdone[H
+[42;9Hbytecom[4hp[H
+[4l[42;13H-opt...[K[H
+[42;20Hdone[H
+[42;9Hcl-seq...[K[H
+[42;18Hdone[H
+[42;9Hmule-util...[K[H
+[42;21Hdone[H
+[42;9Hphp-mode...done[K[H
+[42;1HLoading php-mode...done[K[H[7mFile Edit Options Buffers Tools PHP C Help                                                                      [m[m
+[A
+<?php[K
+// $Id$[K
+[K
+/**[K
+ * @file[K
+ * Outputs contents of nodes[K
+ *[K
+ * @see template_preprocess_node(), preprocess/preprocess-node.inc[K
+ * http://api.drupal.org/api/function/template_preprocess_node/6[K
+ */[K
+?>[K
+<div<?php print $node_attributes; ?>>[K
+     <?php if (!$page && $title): ?>[K
+        <h2><a href="<?php print $node_url; ?>" title="<?php print $title; ?>"><?php print $title; ?></a></h2>[K
+      <?php endif; ?>[K
+  <div class="content clearfix">[K
+    <?php print $content; ?>[K
+  </div>[K
+    <div class="meta">[K
+      <?php if ($submitted): ?>[K
+      <?php print $picture; ?>[K
+      <?php endif; ?>[K
+       <?php if ($submitted): ?>[K
+        <p><?php print $submitted; ?></p>[K
+      <?php endif; ?>[K
+      <?php if ($terms): ?>[K
+        <div class="terms">[K
+          <span class="icon">&nbsp;</span>[K
+          <?php print $terms; ?>[K
+        </div>[K
+      <?php endif; ?>[K
+    </div>[K
+  <?php if ($links): ?>[K
+    <div class="links">[K
+      <?php print $links; ?>[K
+    </div>[K
+  <?php endif; ?>[K
+</div>[K
+[K
+[7m-uu-:---F1  [m[m[7m[1mnode.tpl.php[m[m[7m      (PHP Abbrev)--L1--All-------------------------------------------------------------[m[m
+[A[H
+[42;1H[K[41;46H[7m2[m[m[H
+
+[41;46H[7m3[m[m[4;1H[41;46H[7m4[m[m[5;1H[41;46H[7m5[m[m[6;1H[41;46H[7m6[m[m[7;1H[41;46H[7m7[m[m[8;1H[41;46H[7m8[m[m[9;1H[41;46H[7m9[m[m[10;1H[41;46H[7m10--All[m[m[11;1H[41;47H[7m1[m[m[12;1H[41;47H[7m2[m[m[13;1H[41;47H[7m3[m[m[14;1H[41;47H[7m4[m[m[15;1H[41;47H[7m5[m[m[16;1H[41;47H[7m6[m[m[17;1H[41;47H[7m7[m[m[18;1H[41;47H[7m8[m[m[19;1H[41;47H[7m9[m[m[20;1H[41;46H[7m20[m[m[21;1H[41;47H[7m1[m[m[22;1H[41;47H[7m2[m[m[23;1H[41;47H[7m3[m[m[24;1H[41;47H[7m4[m[m[25;1H[41;47H[7m5[m[m[26;1H[41;47H[7m6[m[m[27;1H[41;47H[7m7[m[m[28;1H[41;47H[7m8[m[m[29;1H[41;47H[7m9[m[m[30;1H[41;46H[7m30[m[m[31;1H[41;47H[7m1[m[m[32;1H[41;47H[7m2[m[m[33;1H[41;47H[7m3[m[m[34;1H[41;47H[7m4[m[m[35;1H[41;47H[7m5[m[m[36;1H[41;47H[7m6[m[m[37;1H[41;47H[7m7[m[m[38;1H[41;47H[7m8[m[m[39;1H[41;47H[7m9[m[m[A[1;39r[2;1H[20M[1;42r[20;1H[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[41;46H[7m40--Bot[m[m[21;1H[41;46H[7m39[m[m[20;1H[41;47H[7m8[m[m[19;1H[41;47H[7m7[m[m[18;1H[41;47H[7m6[m[m[17;1H[41;47H[7m5[m[m[16;1H[41;47H[7m4[m[m[15;1H[41;47H[7m3[m[m[14;1H[41;47H[7m2[m[m[13;1H[41;47H[7m1[m[m[12;1H[41;47H[7m0[m[m[11;1H[41;46H[7m29[m[m[10;1H[41;47H[7m8[m[m[9;1H[41;47H[7m7[m[m[8;1H[41;47H[7m6[m[m[7;1H[41;47H[7m5[m[m[6;1H[41;47H[7m4[m[m[5;1H[41;47H[7m3[m[m[4;1H[41;47H[7m2[m[m[H
+
+[41;47H[7m1[m[m[H
+[1;39r[2;1H[20L[1;42r[2;1H<?php[K
+// $Id$[K
+[K
+/**[K
+ * @file[K
+ * Outputs contents of nodes[K
+ *[K
+ * @see template_preprocess_node(), preprocess/preprocess-node.inc[K
+ * http://api.drupal.org/api/function/template_preprocess_node/6[K
+ */[K
+?>[K
+<div<?php print $node_attributes; ?>>[K
+     <?php if (!$page && $title): ?>[K
+        <h2><a href="<?php print $node_url; ?>" title="<?php print $title; ?>"><?php print $title; ?></a></h2>[K
+      <?php endif; ?>[K
+  <div class="content clearfix">[K
+    <?php print $content; ?>[K
+  </div>[K
+    <div class="meta">[K
+      <?php if ($submitted): ?>[K[41;47H[7m0--All[m[m[21;1H[41;46H[7m19[m[m[20;1H[41;47H[7m8[m[m[19;1H[41;47H[7m7[m[m[18;1H[41;47H[7m6[m[m[17;1H[41;47H[7m5[m[m[16;1H[41;47H[7m4[m[m[15;1H[41;47H[7m3[m[m[14;1H[41;47H[7m2[m[m[13;1H[41;47H[7m1[m[m[12;1H[41;47H[7m0[m[m[11;1H[41;46H[7m9--All-[m[m[10;1H[41;46H[7m8[m[m[9;1H[41;46H[7m7[m[m[8;1H[41;46H[7m6[m[m[7;1H[41;46H[7m5[m[m[6;1H[41;46H[7m4[m[m[5;1H[41;46H[7m3[m[m[4;1H[41;46H[7m2[m[m[H
+
+[41;46H[7m1[m[m[H
+[42;1H(No files need saving)[H
+[42;1H[K[?1l>[2J[?47l8[m]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky/templates/overrides[root@frost overrides]# emacs page.tpl.php 
+7[?47h[?1h=[41;1H[7m----:---F1  [m[m[7m[1m*scratch*   [m[m[7m      (Fundamental)--L1--All------------------------------------------------------------[m[m
+[A[H[42;1HLoading disp-table...[K[H[42;22Hdone[H[H[2J[42;1HLoading /usr/share/emacs/site-lisp/site-start.d/igrep-init.el (source)...[K[H
+[42;74Hdone[H
+[42;49Hlang-coding-systems-init.el (source)...[H
+[H[2J[42;1HLoading encoded-kb...[K[H
+[42;22Hdone[H
+[42;1H[K[?1l>[2J[?47l8[m7[?47h[?1h=[42;1HLoading /usr/share/emacs/site-lisp/site-start.d/lang-coding-systems-init.el (source)...done[K[H
+[42;49Hphp-mode-init.el (source)...[K[H
+[42;77Hdone[H
+[42;50Ho-mode-init.el (source)...[K[H
+[42;76Hdone[H
+[42;50Hsgml-init.el (source)...[K[H
+[42;74Hdone[H
+[42;50Hython-mode-init.el (source)...[H
+[42;80Hdone[H
+[42;49Hrpm-spec-mode-init.el (source)...[K[H
+[42;82Hdone[H
+[42;49Htramp-init.el (source)...[K[H
+[42;74Hdone[H
+[42;9Hjka-compr...[K[H
+[42;21Hdone[H
+[42;1HFor information about the GNU Project and its goals, type C-h C-p.[H
+[42;1HLoading php-mode...[K[H
+[42;1HLoading regexp-opt...[K[H
+[42;22Hdone[H
+[42;9H/usr/libexec/emacs/21.4/i686-redhat-linux-gnu/fns-21.4.1-x.el (source)...[H
+[42;82Hdone[H
+[42;9Hadvice...[K[H
+[42;18Hdone[H
+[42;9Hcl-extra...[K[H
+[42;20Hdone[H
+[42;9Hbytecomp...[K[H
+[42;9Hcl-macs...[K[H
+[42;19Hdone[H
+[42;9Hbytecom[4hp[H
+[4l[42;13H-opt...[K[H
+[42;20Hdone[H
+[42;9Hcl-seq...[K[H
+[42;18Hdone[H
+[42;9Hmule-util...[K[H
+[42;21Hdone[H
+[42;9Hphp-mode...done[K[H
+[42;1HLoading php-mode...done[K[H[7mFile Edit Options Buffers Tools PHP C Help                                                                      [m[m
+[A
+<?php // $Id$[K
+[K
+/**[K
+ * @file[K
+ * Main template file[K
+ *[K
+ * @see template_preprocess_page(), preprocess/preprocess-page.inc[K
+ * http://api.drupal.org/api/function/template_preprocess_page/6[K
+ */[K
+?>[K
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"[K
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">[K
+  <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php print $language->language; ?>" xml:lang="<?php print $\
+[A
+language->language; ?>">[K
+    <head>[K
+      <?php print $head; ?>[K
+      <title><?php print $head_title; ?></title>[K
+      <?php print $styles; ?>[K
+      <?php print $ie_styles; ?>[K
+      <?php print $scripts; ?>[K
+    </head>[K
+  <body<?php print $body_attributes; ?>>[K
+  <?php if (!empty($admin)) print $admin; // support for: http://drupal.org/project/admin ?>[K
+  <div id="wrapper">[K
+    <div<?php print $header_attributes; ?>>[K
+      <div id="header-inner">[K
+        <?php if ($logo): ?>[K
+        <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>" id="logo"><img src="<?php prin\
+[A
+t $logo; ?>" alt="<?php if ($site_name): print $site_name;  endif; ?>" /></a>[K
+        <?php endif; ?>[K
+        <?php if ($site_name): ?>[K
+        <span id="site-name"> <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>"><?php pr\
+[A
+int $site_name; ?></a> </span>[K
+        <?php endif; ?>[K
+        <?php if ($site_slogan): ?>[K
+          <span id="site-slogan"><?php print $site_slogan; ?></span>[K
+        <?php endif; ?>[K
+      </div>[K
+    </div>[K
+[7m-uu-:---F1  [m[m[7m[1mpage.tpl.php[m[m[7m      (PHP Abbrev)--L1--Top-------------------------------------------------------------[m[m
+[A[H
+[42;1H[K[41;46H[7m2[m[m[H
+
+[41;46H[7m3[m[m[4;1H[41;46H[7m4[m[m[5;1H[41;46H[7m5[m[m[6;1H[41;46H[7m6[m[m[7;1H[41;46H[7m7[m[m[8;1H[41;46H[7m8[m[m[9;1H[41;46H[7m9[m[m[10;1H[41;46H[7m10--Top[m[m[11;1H[41;47H[7m1[m[m[12;1H[41;47H[7m2[m[m[13;1H[41;47H[7m3[m[m[14;1H[41;47H[7m4[m[m[16;1H[41;47H[7m5[m[m[17;1H[41;47H[7m6[m[m[18;1H[41;47H[7m7[m[m[19;1H[41;47H[7m8[m[m[20;1H[41;47H[7m9[m[m[21;1H[41;46H[7m20[m[m[22;1H[41;47H[7m1[m[m[23;1H[41;47H[7m2[m[m[24;1H[41;47H[7m3[m[m[25;1H[41;47H[7m4[m[m[26;1H[41;47H[7m5[m[m[27;1H[41;47H[7m6[m[m[28;1H[41;47H[7m7[m[m[29;1H[41;47H[7m8[m[m[31;1H[41;47H[7m9[m[m[32;1H[41;46H[7m30[m[m[33;1H[41;47H[7m1[m[m[35;1H[41;47H[7m2[m[m[36;1H[41;47H[7m3[m[m[37;1H[41;47H[7m4[m[m[38;1H[41;47H[7m5[m[m[39;1H[41;47H[7m6[m[m[A[1;40r[2;1H[19M[1;42r[22;1H    <?php if ($primary_links): ?>[K
+      <div id="navigation"><?php print $primary_links; ?></div>[K
+    <?php endif; ?>[K
+    <div id="container" class="layout-region">[K
+      <?php if ($left): ?>[K
+        <div id="sidebar-left" class="sidebar">[K
+          <div class="inner">[K
+            <?php print $left; ?>[K
+          </div>[K
+        </div>[K
+      <!-- END HEADER -->[K
+      <?php endif; ?>[K
+      <div id="main">[K
+        <div class="main-inner">[K
+          <?php if ($breadcrumb): ?>[K
+            <div class="breadcrumb clearfix"><?php print $breadcrumb; ?></div>[K
+          <?php endif; ?>[K
+          <?php if ($show_messages && $messages != ""): ?>[K
+          <?php print $messages; ?>[K
+		[7m7--17%[m[m[22;1H[41;47H[7m8[m[m[23;1H[41;47H[7m9[m[m[24;1H[41;46H[7m40[m[m[25;1H[41;47H[7m1[m[m[26;1H[41;47H[7m2[m[m[27;1H[41;47H[7m3[m[m[28;1H[41;47H[7m4[m[m[29;1H[41;47H[7m5[m[m[30;1H[41;47H[7m6[m[m[31;1H[41;47H[7m7[m[m[32;1H[41;47H[7m8[m[m[33;1H[41;47H[7m9[m[m[34;1H[41;46H[7m50[m[m[35;1H[41;47H[7m1[m[m[36;1H[41;47H[7m2[m[m[37;1H[41;47H[7m3[m[m[38;1H[41;47H[7m4[m[m[39;1H[41;47H[7m5[m[m[A[1;40r[2;1H[20M[1;42r[21;1H          <?php endif; ?>[K
+          <?php if ($is_front && $mission): ?>[K
+            <div class="mission"><?php print $mission; ?></div>[K
+          <?php endif; ?>[K
+          <?php if ($contenttop): ?>[K
+            <div id="content-top"><?php print $contenttop; ?></div>[K
+            <!-- END CONTENT TOP -->[K
+          <?php endif; ?>[K
+          <?php if ($title): ?>[K
+            <h1 class="title"><?php print $title; ?></h1>[K
+          <?php endif; ?>[K
+          <?php if ($help): ?>[K
+            <div class="help"><?php print $help; ?></div>[K
+          <?php endif; ?>[K
+          <?php print $tabs; ?>[K
+          <div id="content" class="clearfix">[K
+            <?php print $content; ?>[K
+          </div>[K
+          <!-- END CONTENT -->[K
+          <?php print $feed_icons; ?>[K
+		[7m6--40[m[m[21;1H[41;47H[7m7[m[m[22;1H[41;47H[7m8[m[m[23;1H[41;47H[7m9[m[m[24;1H[41;46H[7m60[m[m[25;1H[41;47H[7m1[m[m[26;1H[41;47H[7m2[m[m[27;1H[41;47H[7m3[m[m[28;1H[41;47H[7m4[m[m[29;1H[41;47H[7m5[m[m[30;1H[41;47H[7m6[m[m[31;1H[41;47H[7m7[m[m[32;1H[41;47H[7m8[m[m[33;1H[41;47H[7m9[m[m[34;1H[41;46H[7m70[m[m[35;1H[41;47H[7m1[m[m[36;1H[41;47H[7m2[m[m[37;1H[41;47H[7m3[m[m[38;1H[41;47H[7m4[m[m[39;1H[41;47H[7m5[m[m[A[1;40r[2;1H[20M[1;42r[21;1H          <?php if ($contentbottom): ?>[K
+            <div id="content-bottom"><?php print $contentbottom; ?></div>[K
+          <?php endif; ?>[K
+        </div>[K
+        <!-- END MAIN INNER -->[K
+      </div>[K
+      <!-- END MAIN -->[K
+      <?php if ($right): ?>[K
+        <div id="sidebar-right" class="sidebar">[K
+          <div class="inner">[K
+          <?php print $right; ?>[K
+          </div>[K
+        </div>[K
+      <!-- END SIDEBAR RIGHT -->[K
+      <?php endif; ?>[K
+    </div>[K
+    <!-- END CONTAINER -->[K
+    <div class="push">&nbsp;</div>[K
+  </div>[K
+  <!-- END WRAPPER -->[K[41;47H[7m6--59[m[m[21;1H[41;47H[7m7[m[m[22;1H[41;47H[7m8[m[m[23;1H[41;47H[7m9[m[m[24;1H[41;46H[7m80[m[m[25;1H[41;47H[7m1[m[m[26;1H[41;47H[7m2[m[m[27;1H[41;47H[7m3[m[m[28;1H[41;47H[7m4[m[m[29;1H[41;47H[7m5[m[m[30;1H[41;47H[7m6[m[m[31;1H[41;47H[7m7[m[m[32;1H[41;47H[7m8[m[m[33;1H[41;47H[7m9[m[m[34;1H[41;46H[7m90[m[m[35;1H[41;47H[7m1[m[m[36;1H[41;47H[7m2[m[m[37;1H[41;47H[7m3[m[m[38;1H[41;47H[7m4[m[m[39;1H[41;47H[7m5[m[m[A[1;40r[2;1H[20M[1;42r[21;1H  <div id="footer" class="layout-region">[K
+    <div id="footer-inner">[K
+      <?php print $contentfooter; ?>[K
+      <?php print $footer_message; ?>[K
+    </div>[K
+  </div>[K
+  <?php print $closure; ?>[K
+  </body>[K
+</html>[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K
+[K[41;47H[7m6--Bot[m[m[21;1H[41;47H[7m7[m[m[22;1H[41;47H[7m8[m[m[23;1H[41;47H[7m9[m[m[24;1H[41;46H[7m100--Bot[m[m[25;1H[41;48H[7m1[m[m[26;1H[41;48H[7m0[m[m[25;1H[41;46H[7m99--Bot-[m[m[24;1H[41;47H[7m8[m[m[23;1H[41;47H[7m7[m[m[22;1H[41;47H[7m6[m[m[21;1H[41;47H[7m5[m[m[20;1H[41;47H[7m4[m[m[19;1H[41;47H[7m3[m[m[18;1H[41;47H[7m2[m[m[17;1H[41;47H[7m1[m[m[16;1H[41;47H[7m0[m[m[15;1H[41;46H[7m89[m[m[14;1H[41;47H[7m8[m[m[13;1H[41;47H[7m7[m[m[12;1H[41;47H[7m6[m[m[11;1H[41;47H[7m5[m[m[10;1H[41;47H[7m4[m[m[9;1H[41;47H[7m3[m[m[8;1H[41;47H[7m2[m[m[7;1H[41;47H[7m1[m[m[6;1H[41;47H[7m0[m[m[5;1H[41;46H[7m79[m[m[4;1H[41;47H[7m8[m[m[H
+
+[41;47H[7m7[m[m[H
+[1;40r[2;1H[20L[1;42r[2;1H          <?php if ($is_front && $mission): ?>[K
+            <div class="mission"><?php print $mission; ?></div>[K
+          <?php endif; ?>[K
+          <?php if ($contenttop): ?>[K
+            <div id="content-top"><?php print $contenttop; ?></div>[K
+            <!-- END CONTENT TOP -->[K
+          <?php endif; ?>[K
+          <?php if ($title): ?>[K
+            <h1 class="title"><?php print $title; ?></h1>[K
+          <?php endif; ?>[K
+          <?php if ($help): ?>[K
+            <div class="help"><?php print $help; ?></div>[K
+          <?php endif; ?>[K
+          <?php print $tabs; ?>[K
+          <div id="content" class="clearfix">[K
+            <?php print $content; ?>[K
+          </div>[K
+          <!-- END CONTENT -->[K
+          <?php print $feed_icons; ?>[K
+          <?php if ($contentbottom): ?>[K[41;47H[7m6--59%[m[m[21;1H[41;47H[7m5[m[m[20;1H[41;47H[7m4[m[m[19;1H[41;47H[7m3[m[m[18;1H[41;47H[7m2[m[m[17;1H[41;47H[7m1[m[m[16;1H[41;47H[7m0[m[m[15;1H[41;46H[7m69[m[m[14;1H[41;47H[7m8[m[m[13;1H[41;47H[7m7[m[m[12;1H[41;47H[7m6[m[m[11;1H[41;47H[7m5[m[m[10;1H[41;47H[7m4[m[m[9;1H[41;47H[7m3[m[m[8;1H[41;47H[7m2[m[m[7;1H[41;47H[7m1[m[m[6;1H[41;47H[7m0[m[m[5;1H[41;46H[7m59[m[m[4;1H[42;1H(No files need saving)[4;1H[42;1H[K[?1l>[2J[?47l8[m]0;pgrayove@frost:/lint/drupal/sites/all/themes/sky/templates/overrides[root@frost overrides]# exit
+exit
+
+Script done on Thu 18 Mar 2010 02:04:25 PM EDT

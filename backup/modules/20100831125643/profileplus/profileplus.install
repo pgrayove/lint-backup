@@ -1,0 +1,19 @@
+<?php
+// $Id: profileplus.install,v 1.2.2.1 2008/04/11 12:27:36 incrn8 Exp $
+
+
+/**
+ * Implementation of hook_install().
+ */
+function profileplus_install() {
+  switch ($GLOBALS['db_type']) {
+    case 'mysql':
+    case 'mysqli':
+      // put profileplus after user.module by increasing its weight
+      db_query("UPDATE {system} SET weight = 2 WHERE name = 'profileplus'");
+      break;
+    case 'pgsql':
+      db_query("UPDATE {system} SET weight = 2 WHERE name = 'profileplus'");
+      break;
+  }
+}

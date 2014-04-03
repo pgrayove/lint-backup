@@ -1,0 +1,214 @@
+<?php
+// $Id: webserver_auth.module,v 1.22.2.1 2008/08/07 16:38:49 weitzman Exp $
+
+/**
+ * Implements hook_menu().
+ */
+function webserver_auth_menu() {
+  $items = array();
+  $items['admin/config/people/webserver_auth'] = array
+  (
+    'title' => t('Webserver authentication'),
+    'description' => t('Configure a domain for generating email addresses. Optional.'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('webserver_auth_settings'),
+    'access arguments' => array('administer site configuration'),
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_init().
+ */
+function webserver_auth_init() {
+  global $user, $language;
+   
+  // first we simply check if the user has been logged in by Drupal already.  If they have, we're done.
+  if (isset($user->uid) && ($user->uid != 0))
+  {
+    return;
+  }
+  // get the login name from the $_SERVER variable.
+  $authname = '';
+  if (isset ($_SERVER ['REDIRECT_REMOTE_USER'])) $authname = $_SERVER ['REDIRECT_REMOTE_USER'];
+  elseif (isset ($_SERVER ['REMOTE_USER'])) $authname = $_SERVER ['REMOTE_USER'];
+ 
+  if ($authname)
+  {
+    $authname = webserver_auth_prepare_username($authname);
+      
+    if (webserver_auth_attempt_login($authname))
+    {
+      return;
+    }
+    else
+    {
+      // we didn't fnd the user so we create an account for them if set to do so.
+      // note, hook_user_presave() is called during this process. 
+      // That's where we modify the user account to add email etc.
+      if (variable_get('webserver_auth_create_user', TRUE))
+      {
+        try
+        {
+          user_external_login_register($authname, 'webserver_auth');
+          
+          // user_external_login_register appears to register the user but not actually log them in
+          // in order to do that we need to forward the user to a new page completely
+          drupal_goto(current_path());
+        }
+        catch(PDOException $e)
+        {
+          watchdog('webserver_auth', 'unable to create new user record for user: ' . $authname . '.  This is probably because they already exist in the user table but not in the authmap table for webserver_auth.');
+          return;
+        }
+      }
+    }
+   
+    // still here?
+    watchdog('webserver_auth', 'user: ' . $authname . ' does not exist in the database or is not included in the authmap table for webserver_auth and cannot login.');
+  }
+  else
+  {
+    watchdog('webserver_auth', 'No authname');
+  }
+  return;
+}
+
+function webserver_auth_attempt_login($preparedauthname)
+{
+  // can we find the user in the db already?
+  $uid = db_query('SELECT uid FROM {authmap} WHERE lower(authname) = lower(:authname) AND module = :module', array (':authname' => $preparedauthname, ':module' => 'webserver_auth')) -> fetchField ();
+
+  if (is_numeric($uid))
+  {
+    // we found the user so just log them in
+    $form_state['uid'] = $uid;
+    user_login_submit(array(), $form_state);
+    return true;
+  }
+  return false;
+}
+
+/*
+* Implements hook_user_presave
+*/
+function webserver_auth_user_presave(&$edit, $account, $category) {
+  global $user;
+ 
+  if (!isset($edit['mail']))
+  {
+    if ($domain = variable_get('webserver_auth_email_domain', ''))
+    {
+      // create the email address by concatenating the name and domain (if there is one)
+      // ensure we don't get double @ by removing them from the domain first.
+      $edit['mail'] = strtolower($edit['name'] . '@' . str_replace('@', '', $domain));
+     
+      // replace any spaces with dots
+      $edit['mail'] = str_replace(' ', '.', $edit['mail']);
+    }
+  }
+}
+
+function webserver_auth_user_insert(&$edit, $account, $category) {
+  if ($code = variable_get('webserver_auth_insert', '')) eval('?>'. $code);
+}
+
+function webserver_auth_user_logout($account) {
+  global $base_url;
+  $base_url = str_replace('https://', 'http://', $base_url);
+}
+
+function webserver_auth_settings() {
+  $form = array();
+  $form['webserver_auth_create_user'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Automatically Create user when user does not exist in the Drupal user table'),
+    '#default_value' => variable_get('webserver_auth_create_user', ''),
+    '#description' => t('If this option is disabled, a user that does not exist in the Drupal is considered an anonymous user'),
+  );
+  $form['webserver_auth_email_domain'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Email domain'),
+    '#default_value' => variable_get('webserver_auth_email_domain', ''),
+    '#size' => 30,
+    '#maxlength' => 55,
+    '#description' => t ('Append this domain name to each new user in order generate their email address.'),
+  );
+  $form['advanced'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Advanced settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    'webserver_auth_strip_prefix' => array(
+      '#type' => 'checkbox',
+      '#title' => t('Strip prefix'),
+      '#default_value' => variable_get('webserver_auth_strip_prefix', TRUE),
+      '#description' => t("Strip NTLM-style prefixes (e.g. 'foo1\foo2') from the login name ('foo1\foo2\bar') to generate the username ('bar')."),
+    ),
+    'webserver_auth_strip_domain' => array(
+      '#type' => 'checkbox',
+      '#title' => t('Strip domain'),
+      '#default_value' => variable_get('webserver_auth_strip_domain', TRUE),
+      '#description' => t("Strip a domain name (e.g. '@EXAMPLE.COM') from the login name ('newuser@EXAMPLE.COM') to generate the username ('newuser')."),
+    ),
+    'webserver_auth_disallow_pw_change' => array(
+      '#type' => 'checkbox',
+      '#title' => t('Remove option to change password'),
+      '#default_value' => variable_get('webserver_auth_disallow_pw', TRUE),
+      '#description' => t("Remove the option for users to change their password.  This is most useful when the web server is already authenticating against an external database.  This also removes the passw
+ord validation requirement to change email addresses."),
+    ),
+    'webserver_auth_disallow_username_change' => array(
+      '#type' => 'checkbox',
+      '#title' => t('Disable option to change username'),
+      '#default_value' => variable_get('webserver_auth_disallow_username', TRUE),
+      '#description' => t("Disable the option for users to change their username.  This is most useful when the web server is already authenticating against an external database."),
+    ),
+    'webserver_auth_insert' => array(
+      '#type' => 'textarea',
+      '#title' => 'User account modification',
+      '#default_value' => variable_get('webserver_auth_insert', ''),
+      '#description' => t("Modify user accounts at the time of creation. Use PHP code (enclosed in <code>&lt;?php</code> and <code>?&gt;</code>). The variable <code>\$account</code> is available as in <a hr
+ef=\"http://api.drupal.org/api/function/hook_user/7\">hook_user('insert',...)</a>. Changes to the user object must be explicitly saved to the database to be made permanent."),
+    ),
+  );
+  return system_settings_form($form);
+}
+
+/**
+  * Implementation of hook form_FORM_ID_alter
+  * FORM_ID = user_profile_form
+  * We are going to disable the ability to change passwords and usernames!
+  */
+function webserver_auth_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+  //disable option to change username and give reason why
+  if (variable_get('webserver_auth_disallow_username_change', FALSE)) {
+    $form['account']['name']['#disabled'] = TRUE;
+    $form['account']['name']['#description'] = t('This value has been set by default from the browser login and cannot be changed.');
+  }
+
+  //disable password fields and checking on user account edits
+  if (variable_get('webserver_auth_disallow_pw_change', FALSE)) {
+    unset($form['account']['pass']);
+    unset($form['account']['current_pass']);
+    unset($form['account']['current_pass_required_values']);
+    $form['#validate'] = array_diff($form['#validate'], array('user_validate_current_pass'));
+  }
+}
+
+/*
+ * Strip the prefix and suffix from the username according to the settings.
+ */
+function webserver_auth_prepare_username($username)
+{
+  if (variable_get('webserver_auth_strip_prefix', TRUE))
+  {
+    $fields = explode("\\", $username);
+    $username = $fields [count ($fields) - 1];
+  }
+  if (variable_get('webserver_auth_strip_domain', TRUE)) {
+    $fields = explode ('@', $username);
+    $username = $fields [0];
+  }
+  return $username;
+}

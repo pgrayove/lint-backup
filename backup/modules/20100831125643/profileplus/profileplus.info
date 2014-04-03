@@ -1,0 +1,14 @@
+; $Id: profileplus.info,v 1.2.2.2 2009/01/15 19:19:21 incrn8 Exp $
+name = ProfilePlus
+description = Search usernames and custom user profile fields.
+dependencies[] = search
+dependencies[] = profile
+package = Other
+core = 6.x
+
+; Information added by drupal.org packaging script on 2009-01-15
+version = "6.x-1.1"
+core = "6.x"
+project = "profileplus"
+datestamp = "1232048433"
+

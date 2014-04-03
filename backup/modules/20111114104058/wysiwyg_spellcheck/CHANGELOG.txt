@@ -1,0 +1,14 @@
+# $Id: CHANGELOG.txt,v 1.3 2009/06/11 06:00:47 iva2k Exp $
+
+wysiwyg_spellcheck 6.x-1.2, 2009-06-10
+--------------------------------------
+#486060 by iva2k: Added 'load' => TRUE code, since new WysiwygAPI 6.x-2.0 became picky about that.
+
+wysiwyg_spellcheck 6.x-1.1, 2009-05-27
+--------------------------------------
+#474332 by iva2k: Corrected directory names (tinymce/spellchecker) in instructions.
+
+wysiwyg_spellcheck 6.x-0.1, 2009-05-23
+--------------------------------------
+Initial drupal module code for TinyMCE spellchecker plugin.
+
