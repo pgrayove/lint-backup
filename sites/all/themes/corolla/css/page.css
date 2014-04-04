@@ -1,3 +1,9 @@
+/*
+#admin-menu {
+  display: none;
+}
+*/
+
 /* General page and module styles */
 #header-wrapper {
   position: relative;
@@ -9,7 +15,7 @@
     width: 100%;
 }
 #branding {
-  /* padding: 45px 0 48px 25px; default css for logo spacing */
+  /* padding: 45px 0 48px 25px; default css for header spacing */
   padding: 10px 10px 0 25px;
   display: table-cell;
 }
@@ -25,7 +31,7 @@
   padding: 0 15px 0 0;
   vertical-align: middle;
 }
-#branding hgroup {
+#branding .hgroup {
   display: table-cell;
   vertical-align: middle;
 }
@@ -44,7 +50,7 @@
   font-weight: 400;
 }
 .site-name-hidden #logo,
-.site-name-hidden #branding hgroup {
+.site-name-hidden #branding .hgroup {
   display: block;
 }
 #secondary-content-wrapper,
@@ -65,8 +71,8 @@
 }
 h1#page-title,
 .in-maintenance h1#page-title {
-  border-bottom: none;
   font-size: 2.1em;
+  border-bottom: none;
   line-height: 1;
   margin: 0 0 1em;
   padding: 0;
@@ -398,25 +404,25 @@ a.contextual-links-trigger:hover {
 
 /* Added changes for Staff Development Registration */
 body.page-registration div.registration-entity-link {
-	padding-bottom: 10px;
-	font-size: medium;
+        padding-bottom: 10px;
+        font-size: medium;
 }
 
 body.page-registration div.field,
 body.page-registration  div.field-item {
-	padding-bottom: 10px; 
+        padding-bottom: 10px;
 }
 
 body.node-type-staff-development-page section.field-name-field-staff-dev-date,
-body.node-type-staff-development-page section.field-name-field-staff-dev-location, 
+body.node-type-staff-development-page section.field-name-field-staff-dev-location,
 body.node-type-staff-development-page section.field-name-body {
-	padding-bottom: 10px;
-	font-size: medium;
+        padding-bottom: 10px;
+        font-size: medium;
 }
 
 body.node-type-staff-development-page div.field-item,
 body.node-type-staff-development-page ul.field-items {
-	padding-bottom: 10px;
+        padding-bottom: 10px;
 }
 
 body.node-type-staff-development-page #edit-field-staff-reg-your-feedback,
@@ -431,6 +437,6 @@ body.page-registration-edit div.form-item-field-staff-reg-department-und,
 body.page-registration-edit div.registration-who-msg,
 body.page-registration-edit #edit-field-staff-reg-department,
 body.page-registration-edit div.form-item-user
-	{
-	display: none;
+        {
+        display: none;
 }

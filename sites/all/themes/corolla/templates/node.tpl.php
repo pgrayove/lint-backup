@@ -7,20 +7,19 @@
     <?php if ($title || $display_submitted): ?>
       <header<?php print $header_attributes; ?>>
 
-        <?php if ($title): ?>
-          <h1<?php print $title_attributes; ?>>
-            <?php if (!$page): ?>
-              <a href="<?php print $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
-            <?php elseif ($page): ?>
-              <?php print $title; ?>
-            <?php endif; ?>
-          </h1>
-        <?php endif; ?>
 
-        <?php if ($display_submitted): ?>
-	    <!-- <p class="submitted"><?php // print $submitted; ?></p>--> 
-       <p class="submitted"> <?php print 'Updated: ' . date('F j, Y', $node->changed); ?></p>  
-        <?php endif; ?>
+    <?php if ($title && !$page): ?>
+	<h1<?php print $title_attributes; ?>>
+    <a href="<?php print $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
+
+
+          </h1>
+	  <?php endif; ?>
+
+	  <?php if ($display_submitted): ?>
+	      <!-- <p class="submitted"><?php // print $submitted; ?></p>-->
+		      <p class="submitted"> <?php print 'Updated: ' . date('F j, Y', $node->changed); ?></p>
+		      <?php endif; ?>
 
       </header>
     <?php endif; ?>
