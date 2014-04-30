@@ -210,7 +210,16 @@
  *   );
  * @endcode
  */
-$databases = array();
+$databases['default']['default'] = array(
+   'driver' => 'mysql',
+   'database' => 'drupal',
+   'username' => 'root',
+   'password' => 'mobob26',
+   'host' => 'localhost',
+   'port' => '3306', 
+   'prefix' => '',
+   'collation' => 'utf8_general_ci',
+ );
 
 /**
  * Access control for update.php script.
@@ -264,7 +273,7 @@ $drupal_hash_salt = '';
  * It is not allowed to have a trailing slash; Drupal will add it
  * for you.
  */
-# $base_url = 'http://www.example.com';  // NO trailing slash!
+# $base_url = 'http://lint.monroe.lib.in.us';  // NO trailing slash!
 
 /**
  * PHP settings:
