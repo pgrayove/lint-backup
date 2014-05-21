@@ -19,18 +19,29 @@ function field_tools_help($path, $arg) {
   $args_reverse = array_reverse($args_filtered);
 
   // Provide help for any path that ends in 'fields/%/clone'.
-  $last_three = array_slice($args_filtered, -3);
-  // If we get fewer than three items we don't care anyway.
-  if (count($last_three) >= 3) {
-    if ($last_three[0] == 'fields' && $last_three[2] == 'clone') {
-      return t('Apply this existing field to the other bundles by copying the current field instance.');
+  if ($args_reverse[0] == 'clone' && $args_reverse[2] == 'fields') {
+    return t('Apply this existing field to the other bundles by copying the current field instance.');
+  }
+
+  // Provide help for the bundle tools page.
+  // Check the last path item first, so we don't perform all the bundle checking
+  // on every page.
+  if ($args_reverse[0] == 'tools') {
+    // Check that this in indeed on a bundle admin path, rather than just any
+    // old path ending in 'tools'.
+    $potential_bundle_path = implode('/', array_slice($args_filtered, 0, -1));
+    foreach (entity_get_info() as $entity_type => $entity_info) {
+      foreach ($entity_info['bundles'] as $bundle_name => $bundle_info) {
+        if (isset($bundle_info['admin']['real path']) && $bundle_info['admin']['real path'] == $potential_bundle_path) {
+          // We're under the admin path for this bundle.
+          return t("Apply some or all fields of the %bundle bundle to other bundles by copying the field instances.", array(
+            '%bundle' => $bundle_info['label'],
+          ));
+        }
+      }
     }
   }
 
-  // Provide help for any path that ends in 'tools'.
-  if ($args_reverse[0] == 'tools') {
-    return t("Apply some or all fields of the current bundle to other bundles by copying the field instances.");
-  }
   // Provide help any path that ends in 'tools/clone-to'.
   if (count($args_reverse) > 1 && $args_reverse[1] == 'tools' && $args_reverse[0] == 'clone-to') {
     return t("Select the fields you want to copy this bundle. You can only select one instance of a particular field.");
@@ -174,6 +185,14 @@ function field_tools_menu() {
     'file' => 'field_tools.admin.inc',
   ) + $access;
 
+  $items["admin/reports/fields/references"] = array(
+    'title' => 'References',
+    'page callback' => 'field_tools_field_references_overview',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 5,
+    'file' => 'field_tools.admin.inc',
+  ) + $access;
+
   $items["admin/reports/fields/field/%"] = array(
     'title' => 'Field instances',
     'page callback' => 'field_tools_field_page',
@@ -282,17 +301,28 @@ function field_tools_form_field_ui_field_overview_form_alter(&$form, $form_state
  * Form after_build callback to add an export link to a fields table.
  */
 function field_tools_alter_fields_ui_table($form, $form_state) {
-  // Figure out the key for the operations column in the table, as other modules
-  // may be adding more columns too.
+  // Figure out the key for the operations column in the table header, as other
+  // modules may be adding more columns too.
   $header = $form['fields']['#header'];
-  end($header);
-  $key = key($header);
-
+  foreach ($header as $key => $header_cell) {
+    if (is_array($header_cell) && $header_cell['data'] == t('Operations')) {
+      break;
+    }
+  }
+  // Increate the colspan of the 'operations' column.
   $form['fields']['#header'][$key]['colspan']++;
 
+  // For each field, add an 'export' operation link after the 'delete' link.
   foreach (element_children($form['fields']) as $field_name) {
     if (!in_array($form['fields'][$field_name]['#row_type'], array('field', 'group'))) {
-      $form['fields'][$field_name]['export']['#markup'] = NULL;
+      $export_cell = array(
+        '#markup' => NULL,
+      );
+      $insert_array = array(
+        'export' => $export_cell,
+      );
+      field_tools_array_insert($form['fields'][$field_name], 'delete', $insert_array);
+
       continue;
     }
 
@@ -303,14 +333,21 @@ function field_tools_alter_fields_ui_table($form, $form_state) {
     switch ($form['fields'][$field_name]['#row_type']) {
       case 'field':
         if (!isset($form['fields'][$field_name]['edit']) || (isset($form['fields'][$field_name]['edit']['#value']) && $form['fields'][$field_name]['edit']['#value'] == t('Locked'))) {
-          $form['fields'][$field_name]['export']['#markup'] = NULL;
+          $export_cell = array(
+            '#markup' => NULL,
+          );
+          $insert_array = array(
+            'export' => $export_cell,
+          );
+          field_tools_array_insert($form['fields'][$field_name], 'delete', $insert_array);
+
           continue;
         }
 
         $instance = field_info_instance($entity_type, $field_name, $bundle);
         $admin_field_path = $admin_path . '/fields/' . $instance['field_name'];
 
-        $form['fields'][$field_name]['export'] = array(
+        $export_cell = array(
           '#type' => 'link',
           '#title' => t('export'),
           '#href' => $admin_field_path . '/export',
@@ -320,11 +357,16 @@ function field_tools_alter_fields_ui_table($form, $form_state) {
             )
           ),
         );
+        $insert_array = array(
+          'export' => $export_cell,
+        );
+        field_tools_array_insert($form['fields'][$field_name], 'delete', $insert_array);
+
         break;
 
       case 'group':
         $admin_field_path = $admin_path . '/groups/' . $field_name;
-        $form['fields'][$field_name]['export'] = array(
+        $export_cell = array(
           '#type' => 'link',
           '#title' => t('export'),
           '#href' => $admin_field_path . '/export/form',
@@ -334,9 +376,56 @@ function field_tools_alter_fields_ui_table($form, $form_state) {
             )
           ),
         );
+        $insert_array = array(
+          'export' => $export_cell,
+        );
+        field_tools_array_insert($form['fields'][$field_name], 'delete', $insert_array);
+
         break;
     }
   }
 
   return $form;
+}
+
+
+/**
+ * Inserts values into an array after a given key.
+ *
+ * Values from $insert_array are inserted after (or before) $key in $array. If
+ * $key is not found, $insert_array is appended to $array using array_merge().
+ *
+ * From https://drupal.org/node/66183.
+ *
+ * @param $array
+ *   The array to insert into. Passed by reference and altered in place.
+ * @param $key
+ *   The key of $array to insert after
+ * @param $insert_array
+ *   An array whose values should be inserted.
+ * @param $before
+ *   If TRUE, insert before the given key, rather than after it.
+ *   Defaults to inserting after.
+*/
+function field_tools_array_insert(&$array, $key, $insert_array, $before = FALSE) {
+  $done = FALSE;
+  foreach ($array as $array_key => $array_val) {
+    if (!$before) {
+      $new_array[$array_key] = $array_val;
+    }
+    if ($array_key == $key && !$done) {
+      foreach ($insert_array as $insert_array_key => $insert_array_val) {
+        $new_array[$insert_array_key] = $insert_array_val;
+      }
+      $done = TRUE;
+    }
+    if ($before) {
+      $new_array[$array_key] = $array_val;
+    }
+  }
+  if (!$done) {
+    $new_array = array_merge($array, $insert_array);
+  }
+  // Put the new array in the place of the original.
+  $array = $new_array;
 }
