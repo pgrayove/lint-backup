@@ -415,13 +415,18 @@ body.page-registration  div.field-item {
 
 body.node-type-staff-development-page section.field-name-field-staff-dev-date,
 body.node-type-staff-development-page section.field-name-field-staff-dev-location,
-body.node-type-staff-development-page section.field-name-body {
+body.node-type-staff-development-page section.field-name-body,
+body.node-type-staff-development-page-new-feedb section.field-name-field-staff-dev-date,
+body.node-type-staff-development-page-new-feedb section.field-name-field-staff-dev-location,
+body.node-type-staff-development-page-new-feedb section.field-name-body {
         padding-bottom: 10px;
         font-size: medium;
 }
 
 body.node-type-staff-development-page div.field-item,
-body.node-type-staff-development-page ul.field-items {
+body.node-type-staff-development-page ul.field-items,
+body.node-type-staff-development-page-new-feedb div.field-item,
+body.node-type-staff-development-page-new-feedb ul.field-items {
         padding-bottom: 10px;
 }
 
@@ -432,6 +437,17 @@ body.node-type-staff-development-page #edit-field-would-you-recommend-it-to-,
 body.node-type-staff-development-page #edit-field-any-additional-comments-to,
 body.node-type-staff-development-page #edit-field-staff-reg-feedbk-complete,
 body.node-type-staff-development-page #edit-field-share-feedback,
+body.page-registration-edit div.form-item-who-is-registering,
+body.page-registration-edit div.form-item-field-staff-reg-department-und,
+body.page-registration-edit div.registration-who-msg,
+body.page-registration-edit #edit-field-staff-reg-department,
+body.page-registration-edit div.form-item-user,
+body.node-type-staff-development-page-new-feedb #edit-field-staff-feed-new-skills,
+body.node-type-staff-development-page-new-feedb #edit-field-staff-feed-apply,
+body.node-type-staff-development-page-new-feedb #edit-field-staff-feed-recommend,
+body.node-type-staff-development-page-new-feedb #edit-field-staff-feed-rec-why,
+body.node-type-staff-development-page-new-feedb #edit-field-staff-reg-feedbk-complete,
+body.node-type-staff-development-page-new-feedb #edit-field-staff-dev-share,
 body.page-registration-edit div.form-item-who-is-registering,
 body.page-registration-edit div.form-item-field-staff-reg-department-und,
 body.page-registration-edit div.registration-who-msg,
