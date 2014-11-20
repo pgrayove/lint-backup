@@ -165,7 +165,9 @@ function datereminder_node_view($node, $view_mode, $langcode) {
   if ($enabled > 0) {
     // This node has reminders to display. But only display if this is
     // full (not teaser) view, and if reminders aren't under a separate tab.
-    if (($view_mode == 'full') && !variable_get('datereminder_as_tab', FALSE)) {
+    if (($view_mode == 'full') &&
+            (variable_get('datereminder_display_loc', DATEREMINDER_IN_NODE)
+              == DATEREMINDER_IN_NODE)) {
       module_load_include('inc', 'datereminder', 'includes/defines');
       // Do we actually want reminders for this node?
       if ($enabled >= DATEREMINDER_TYPE_ALLOWED) {
@@ -190,7 +192,7 @@ function _datereminder_node_output(&$node, $type = 'node') {
     return $output;
   }
 
-  if (datereminder_allowed_access_node($node, 'own', 'inline')) {
+  if (datereminder_allowed_access_node($node, 'own', DATEREMINDER_IN_NODE)) {
     $output = _datereminder_current_user_reminder($node, $type);
   }
   return $output;
@@ -600,7 +602,9 @@ function datereminder_tokens($type, $tokens, $data, $options) {
     if ($r) {
       module_load_include('inc', 'datereminder', 'includes/date');
       $datefield = _datereminder_get_datefield($r);
-      $tz = isset($r->user->timezone) ? $r->user->timezone : NULL;
+      $tz = (isset($r->user->timezone) &&
+                variable_get('configurable_timezones', 1)) ?
+              $r->user->timezone : NULL;
 
       $next_due = $r->next_due;
       // We want then next-date tokens to show next occurrance after
@@ -715,11 +719,13 @@ function datereminder_access_user($acct) {
  * @param string $acc
  *   What kind of access is requested?
  *   'own' means set/view own reminder
- *   'all' means view others' reminders
+ *   'all' means view others' reminder
+ * @param string loc
+ *   Where is the reminder to be displayed?
  */
 function datereminder_allowed_access_node($node = NULL,
         $acc = 'own',
-        $loc = 'inline') {
+        $loc = DATEREMINDER_IN_NODE) {
   global $user;
   if (!isset($user) || ($user->uid == 0)) {
     return FALSE;
@@ -730,19 +736,12 @@ function datereminder_allowed_access_node($node = NULL,
     return FALSE;
   }
 
-  $astab = variable_get('datereminder_as_tab', FALSE);
-  if ($loc == 'inline') {
-    if ($astab) {
-      return FALSE;
-    }
-  }
-  else {
-    if (!$astab) {
-      return FALSE;
-    }
+  $accloc = variable_get('datereminder_display_loc', DATEREMINDER_IN_NODE);
+  if ($loc != $accloc) {
+    return FALSE;
   }
 
-  if (user_access(DATEREMINDER_VIEW_OTHER_USER_REMINDERS) 
+  if (user_access(DATEREMINDER_VIEW_OTHER_USER_REMINDERS)
           || user_access(DATEREMINDER_ADMINISTER_REMINDERS)) {
     return TRUE;
   }
@@ -763,7 +762,7 @@ function datereminder_allowed_access_node($node = NULL,
 function datereminder_allowed_access_user($u = NULL) {
   module_load_include('inc', 'datereminder', 'includes/defines');
   global $user;
-  
+
   if ($user->uid == 0) {
     return FALSE;
   }
@@ -861,4 +860,41 @@ function datereminder_user_cancel($edit, $account, $method) {
   // For the purposes of Date Reminder, there's no reason to keep reminders
   // for a cancelled user.
   datereminder_user_delete($account);
+}
+
+/**
+ * Implements hook_block_info().
+ *
+ * Tell Drupal about the Subscriptions Interface block.
+ *
+ * @ingroup hooks
+ */
+function datereminder_block_info() {
+  $blocks[0]['info'] = t('Reminder request');
+  $blocks[0]['cache'] = DRUPAL_CACHE_PER_PAGE;
+  $blocks[0]['region'] = 'content';
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * Define the Subscriptions Interface block for node pages (depending on the Display Settings).
+ *
+ * @param int $delta
+ *
+ * @return array|null
+ *
+ * @ingroup hooks
+ */
+function datereminder_block_view($delta = 0) {
+  $n = menu_get_object();
+  $ret = NULL;
+  if (datereminder_allowed_access_node($n, 'own', DATEREMINDER_AS_BLOCK)) {
+    $ret = array(
+        'subject' => t('Reminders'),
+        'content' =>  _datereminder_current_user_reminder($n, 'node'),
+    );
+  }
+  return $ret;
 }

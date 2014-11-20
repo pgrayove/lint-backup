@@ -6,9 +6,9 @@ configure=admin/config/people/datereminder
 package = Date/Time
 core = 7.x
 
-; Information added by Drupal.org packaging script on 2014-03-15
-version = "7.x-1.8"
+; Information added by Drupal.org packaging script on 2014-11-04
+version = "7.x-1.9"
 core = "7.x"
 project = "datereminder"
-datestamp = "1394849910"
+datestamp = "1415062986"
 

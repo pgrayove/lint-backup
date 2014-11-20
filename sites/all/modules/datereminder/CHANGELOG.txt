@@ -1,4 +1,10 @@
-Date Reminder 7.x-1.x In progress
+Date Reminder 7.x-1.9 2014-11-03
+----------------------------------------
+#2318473 by dwillcox: Use system TZ when sending email when the option
+                      letting users set their own timezone is disabled.
+#2363655 by dwillcox: Support showing reminder form as a block.
+
+Date Reminder 7.x-1.8 2014-03-14
 ----------------------------------------
 #2215383, #2212349 by dwillcox: Add missing module_load_include()
                       and form_load_include() calls.

@@ -177,4 +177,18 @@ function datereminder_update_7001() {
       variable_del('datereminder_mail_body');
     }
   }
+  return array();
+}
+
+/**
+ * Change datereminder_as_tab variable to datereminder_display_loc. 
+ */
+function datereminder_update_7002() {
+  module_load_include('inc', 'datereminder', 'includes/defomes');
+
+  $oldval = variable_get('datereminder_as_tab', FALSE);
+  $newval = $oldval ? DATEREMINDER_AS_TAB : DATEREMINDER_IN_NODE;
+  variable_set('daterminder_display_loc', $newval);
+  variable_del('datereminder_as_tab');
+  return array();
 }

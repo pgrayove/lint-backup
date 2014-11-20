@@ -12,7 +12,8 @@
 function _datereminder_menu() {
   module_load_include('inc', 'datereminder', 'includes/defines');
 
-  $astab = variable_get('datereminder_as_tab', FALSE);
+  $astab = variable_get('datereminder_display_loc', DATEREMINDER_IN_NODE)
+          == DATEREMINDER_AS_TAB;
   $cfgbase = 'admin/config/people/datereminder';
 
   $items = array();
@@ -68,7 +69,7 @@ function _datereminder_menu() {
       'title' => 'Reminders',
       'description' => 'Your reminders for this event',
       'access callback' => 'datereminder_allowed_access_node',
-      'access arguments' => array(1, 'own', 'menu'),
+      'access arguments' => array(1, 'own', DATEREMINDER_AS_TAB),
       'page callback' => 'drupal_get_form',
       'page arguments' => array('datereminder_form', 1, 'm'),
     );
@@ -82,7 +83,7 @@ function _datereminder_menu() {
       'title' => 'All For This Event',
       'description' => 'All reminders for this event',
       'access callback' => 'datereminder_allowed_access_node',
-      'access arguments' => array(1, 'all', 'menu'),
+      'access arguments' => array(1, 'all', DATEREMINDER_AS_TAB),
       'page callback' => 'drupal_get_form',
       'page arguments' => array('datereminder_form_summary', 1, 'all_node', 'm'),
     );
@@ -93,7 +94,7 @@ function _datereminder_menu() {
       'title' => 'All Reminders',
       'description' => 'All reminders for this event',
       'access callback' => 'datereminder_allowed_access_node',
-      'access arguments' => array(1, 'all', 'inline'),
+      'access arguments' => array(1, 'all', DATEREMINDER_IN_NODE),
       'page callback' => 'drupal_get_form',
       'page arguments' => array('datereminder_form_summary', 1, 'all_node', 'm'),
     );
@@ -143,14 +144,18 @@ function datereminder_settings_form() {
     '#size' => 3,
     '#default_value' => variable_get('datereminder_retain_expired', 14),
   );
-  $form['datereminder_as_tab'] = array(
-    '#type' => 'select',
+  $form['datereminder_display_loc'] = array(
+    '#type' => 'radios',
     '#description' => t('Where should reminders appear when viewing a node?'),
-    '#default_value' => variable_get('datereminder_as_tab', FALSE),
+    '#default_value' => variable_get('datereminder_display_loc',
+            DATEREMINDER_IN_NODE),
     '#title' => t('Reminder display'),
     '#options' => array(
-      FALSE => t('Inline in node'),
-      TRUE => t('As a separate tab'),
+      DATEREMINDER_IN_NODE => t('Fieldset within the node'),
+      DATEREMINDER_AS_TAB => t('As a tab'),
+      DATEREMINDER_AS_BLOCK =>
+        t('Fieldset in a separate %block block.',
+                array('%block' => t('Reminder request'))),
     ),
   );
   module_load_include('inc', 'datereminder', 'includes/datereminder_form');
@@ -211,10 +216,10 @@ function datereminder_settings_form() {
  *   Current form state
  */
 function datereminder_settings_form_submit($form, &$form_state) {
-  // If value of datereminder_as_tab changed, remember that it's
+  // If value of datereminder_display_loc changed, remember that it's
   // necessary to rebuild menus.
-  if ($form_state['values']['datereminder_as_tab'] !=
-          $form['datereminder_as_tab']['#default_value']) {
+  if ($form_state['values']['datereminder_display_loc'] !=
+          $form['datereminder_display_loc']['#default_value']) {
     variable_set('menu_rebuild_needed', TRUE);
   }
 }

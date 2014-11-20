@@ -31,3 +31,10 @@ define('DATEREMINDER_CRON_FREQUENCY', 60);
  * Name of file with database apis.
  */
 define('DATEREMINDER_DB', 'includes/db7');
+
+/**
+ * Where should reminders be displayed? (values of datereminder_display_loc.)
+ */
+define('DATEREMINDER_IN_NODE', '0');
+define('DATEREMINDER_AS_TAB', '1');
+define('DATEREMINDER_AS_BLOCK', '2');
