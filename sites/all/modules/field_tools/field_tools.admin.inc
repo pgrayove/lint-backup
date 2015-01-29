@@ -106,6 +106,126 @@ function field_tools_field_references_overview() {
 }
 
 /**
+ * Output a graph of references between entity types.
+ *
+ * Requires GraphAPI module.
+ *
+ * @param $graph_engine
+ *  (optional) The name of a GraphAPI engine to use. Defaults to the first
+ *  engine returned by graphapi_get_engines().
+ */
+function field_tools_field_references_graph($graph_engine = NULL) {
+  $graph = graphapi_new_graph();
+
+  $entity_info = entity_get_info();
+  $field_types = field_info_field_types();
+  $fields = field_info_fields();
+  $field_map = field_info_field_map();
+  $instances = field_info_instances();
+
+  // Step 1: Create graph nodes for reference fields.
+  foreach ($fields as $field_name => $field) {
+    $target_type = NULL;
+    switch ($field['type']) {
+      case 'entityreference':
+        $target_type = $field['settings']['target_type'];
+        $link_color = 'red';
+        break;
+      case 'taxonomy_term_reference':
+        $target_type = 'taxonomy_term';
+        $link_color = 'green';
+        break;
+      // TODO: deal with product reference fields.
+    }
+
+    // If no target type was set, then we don't know about this sort of field.
+    if (empty($target_type)) {
+      continue;
+    }
+
+    // First pass: only entity types in graph, no bundles.
+    foreach ($field_map[$field_name]['bundles'] as $instance_entity_type => $instance_bundles) {
+      //dsm("FROM $instance_entity_type TO $target_type");
+      $link_data = array(
+        'title' => $field_name,
+        'type'  => 'field-' . $field['type'],
+        'color' => $link_color,
+      );
+      graphapi_set_link_data($graph, $instance_entity_type, $target_type, $link_data);
+    }
+  }
+
+  // Step 2: Create graph nodes for schema properties that point to other entity tables.
+  // First we need a lookup of all the entity tables.
+  $entity_tables = array();
+  foreach ($entity_info as $entity_type => $entity_type_info) {
+    $entity_tables[$entity_type_info['base table']] = $entity_type;
+  }
+  // Now work through each entity's table schema
+  foreach ($entity_info as $entity_type => $entity_type_info) {
+    $entity_table_schema = drupal_get_schema($entity_type_info['base table']);
+    if (!isset($entity_table_schema['foreign keys'])) {
+      continue;
+    }
+    foreach ($entity_table_schema['foreign keys'] as $relation_name => $relation_info) {
+      if (isset($entity_tables[$relation_info['table']])) {
+        // The relation goes to another entity type's table, so add a link to
+        // our graph.
+        $link_data = array(
+          'title' => $relation_name,
+          'type'  => 'schema',
+          'color' => 'blue',
+        );
+        graphapi_set_link_data($graph, $entity_type, $entity_tables[$relation_info['table']], $link_data);
+      }
+    }
+  }
+
+  //dsm($graph);
+
+  $config = array(
+    'width' => 800,
+    'height' => 400,
+  );
+
+  $graph_api_engines = graphapi_get_engines();
+  if (empty($graph_engine)) {
+    // Take the first engine if none was given in the URL.
+    $graph_api_engine_names = array_keys($graph_api_engines);
+    $graph_engine = array_shift($graph_api_engine_names);
+  }
+
+  $config['engine'] = $graph_engine;
+
+  $build = array();
+
+  $vars = array(
+    'graph' => $graph,
+    'config' => $config,
+  );
+
+  $build['graph'] = array(
+    '#markup' => theme('graphapi_dispatch', $vars)
+  );
+
+  $engine_links_items = array();
+  foreach ($graph_api_engines as $name => $label) {
+    if ($graph_engine == $name) {
+      $label .= ' ' . t("(current)");
+    }
+    $engine_links_items[] = l($label, "admin/reports/fields/graph/$name");
+  }
+
+  $build['engine_links'] = array(
+    '#theme' => 'item_list',
+    '#items' => $engine_links_items,
+    '#title' => t("Select graph rendering engine"),
+  );
+
+  return $build;
+}
+
+/**
  * Form to edit all instances of a field.
  *
  * @param $field

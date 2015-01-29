@@ -529,6 +529,7 @@ function term_merge_form_term_trunk_term_create($form, $form_state) {
  *   sought only among children of this term
  */
 function term_merge_duplicates_form($form, &$form_state, $vocabulary = NULL, $parent_term = NULL) {
+  // TODO: make this JavaScript #attached.
   drupal_add_js(drupal_get_path('module', 'term_merge') . '/js/duplicate.form.js');
 
   // Checking if we were not given vocabulary object, we will use term object to
@@ -661,7 +662,7 @@ function term_merge_duplicates_form($form, &$form_state, $vocabulary = NULL, $pa
 
       $form['wrapper']['group'][$i] = array(
         '#type' => 'fieldset',
-        '#title' => $first_term->name,
+        '#title' => check_plain($first_term->name),
         '#collapsible' => TRUE,
         '#pre_render' => array('term_merge_duplicates_fieldset_preprocess'),
         '#element_validate' => array('term_merge_duplicates_fieldset_validate'),
