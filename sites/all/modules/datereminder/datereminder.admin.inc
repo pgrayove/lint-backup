@@ -158,6 +158,13 @@ function datereminder_settings_form() {
                 array('%block' => t('Reminder request'))),
     ),
   );
+  $form['datereminder_anonymous_link'] = array(
+      '#type' => 'checkbox',
+      '#description' =>
+          t('If displayed in node or block, give anonymous user a prompt to log in'),
+      '#default_value' => variable_get('datereminder_anonymous_link', false),
+      '#title' => t('Prompt anonymous user to log in.'),
+  );
   module_load_include('inc', 'datereminder', 'includes/datereminder_form');
   $leads = _datereminder_leadtime_list();
   $boxes = array();

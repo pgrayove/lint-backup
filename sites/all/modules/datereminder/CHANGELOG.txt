@@ -1,3 +1,8 @@
+Date Reminder 7.x-1.10 2015-03-04
+----------------------------------------
+#1542870 by dwillcox: Support for a few simple Rules.
+#2368295 by dwillcox: Add option to display "login or register" prompt to anonymous user.
+
 Date Reminder 7.x-1.9 2014-11-03
 ----------------------------------------
 #2318473 by dwillcox: Use system TZ when sending email when the option

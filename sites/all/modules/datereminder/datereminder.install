@@ -87,7 +87,7 @@ function datereminder_schema() {
         'description' => "If TRUE, delete after 'next'",
         'type' => 'int',
         'size' => 'tiny',
-        'default' => '0',
+        'default' => 0,
         'not null' => TRUE,
       ),
       'next_due' => array(
@@ -118,7 +118,7 @@ function datereminder_update_6003() {
     'description' => "If TRUE, delete after 'next'",
     'type' => 'int',
     'size' => 'tiny',
-    'default' => '0',
+    'default' => 0,
     'not null' => TRUE,
   );
   db_add_field($ret, 'datereminder', 'expired', $fd);

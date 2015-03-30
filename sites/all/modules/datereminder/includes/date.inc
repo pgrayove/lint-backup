@@ -52,9 +52,10 @@ function _datereminder_get_next_reminder(&$r, $datefield = NULL) {
     $rem = _datereminder_date_format_internal($rtime);
     $r->expired = 0;
   }
-  elseif ($r->expired == 0) {
+  elseif (!isset($r->expired) || $r->expired == 0) {
     // If not already expired and there's no new date, set expire date.
     $r->expired = 1;
+    // TODO: Expire time should be after last date occurrance.
     $rtime = _datereminder_now(_datereminder_retain_expired());
     $rem = _datereminder_date_format_internal($rtime);
   }
@@ -62,7 +63,7 @@ function _datereminder_get_next_reminder(&$r, $datefield = NULL) {
     return FALSE;
   }
 
-  $ret = ($rem != $r->next_due);
+  $ret = !isset($r->next_due) || ($rem != $r->next_due);
   $r->next_due = $rem;
   return $ret;
 }
